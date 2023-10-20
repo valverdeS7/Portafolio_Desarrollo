@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+       
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla::header}"/>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Descripcion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> th:each="categoria : ${categorias}">
+                    <td>[[${categoria.idCategoria}]]</td>
+                    <td>[[${categoria.Descripcion}]]</td>
+                </tr>
+            </tbody>
+        </table>
+
+        
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>
