@@ -7,3 +7,4 @@ public interface CategoriaDao
         extends JpaRepository<Categoria, Long> {
 
 }
+ sad gd dfg  
