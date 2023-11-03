@@ -2,6 +2,7 @@ package com.tienda_v1.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -14,24 +15,17 @@ public class Categoria implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_Categoria")
+    @Column(name = "id_categoria")
 
     private Long idCategoria;
 
     private String descripcion;
     private String rutaImagen;
-    private Boolean activo;
+    private boolean activo;
 
-    public Categoria() {
-    }
+    @OneToMany
+    @JoinColumn(name = "id_categoria", updatable = false)
+    private List<Producto> productos;
 
-    public Categoria(String descripcion, Boolean activo) {
-        this.descripcion = descripcion;
-        this.activo = activo;
-    }
-
-    public boolean isActivo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 }

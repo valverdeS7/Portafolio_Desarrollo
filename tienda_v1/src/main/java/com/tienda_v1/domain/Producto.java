@@ -14,24 +14,19 @@ public class Producto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_Producto")
+    @Column(name = "id_producto")
 
     private Long idProducto;
-
+    //* private Long idCategoria;
     private String descripcion;
+    private String detalle;
+    private double precio;
+    private int existencias;
     private String rutaImagen;
-    private Boolean activo;
+    private boolean activo;
 
-    public Producto() {
-    }
-
-    public Producto(String descripcion, Boolean activo) {
-        this.descripcion = descripcion;
-        this.activo = activo;
-    }
-
-    public boolean isActivo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
+    Categoria categoria;
 
 }
