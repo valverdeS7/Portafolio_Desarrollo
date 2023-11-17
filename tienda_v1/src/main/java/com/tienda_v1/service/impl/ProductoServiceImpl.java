@@ -42,6 +42,22 @@ public class ProductoServiceImpl implements ProductoService {
     public void delete(Producto producto) {
         productoDao.delete(producto);
     }
+    
+       // lista de productos utilizando un metodo Query
+
+    /**
+     *
+     * @param precioInf
+     * @param precioSup
+     * @return
+     */ 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> consultaQuery(double precioInf, double precioSup){
+        return productoDao.findByPrecioBtweenOrderByDescripcion(precioInf, precioSup);
+                    }
+           
+
 
 }
 

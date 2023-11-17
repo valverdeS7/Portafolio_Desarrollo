@@ -19,7 +19,7 @@ public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
-    
+
     @Autowired
     private CategoriaService categoriaService;
 
@@ -28,15 +28,13 @@ public class ProductoController {
         var productos = productoService.getProductos(false);
         model.addAttribute("productos", productos);
         model.addAttribute("totalProductos", productos.size());
-        
-        var categorias= categoriaService.getCategorias(false);
+
+        var categorias = categoriaService.getCategorias(false);
         model.addAttribute("categorias", categorias);
-        
 
         return "/producto/listado";
-
     }
-    
+
     @GetMapping("/nuevo")
     public String productoNuevo(Producto producto) {
         return "/producto/modifica";
@@ -44,17 +42,12 @@ public class ProductoController {
 
     @Autowired
     private FirebaseStorageServiceImpl firebaseStorageService;
-    
+
     @PostMapping("/guardar")
-    public String productoGuardar(Producto producto,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {        
+    public String productoGuardar(Producto producto, @RequestParam("imagenFile") MultipartFile imagenFile) {
         if (!imagenFile.isEmpty()) {
             productoService.save(producto);
-            producto.setRutaImagen(
-                    firebaseStorageService.cargaImagen(
-                            imagenFile, 
-                            "producto", 
-                            producto.getIdProducto()));
+            producto.setRutaImagen(firebaseStorageService.cargaImagen(imagenFile, "producto", producto.getIdProducto()));
         }
         productoService.save(producto);
         return "redirect:/producto/listado";
@@ -72,4 +65,7 @@ public class ProductoController {
         model.addAttribute("producto", producto);
         return "/producto/modifica";
     }
+
+    
 }
+

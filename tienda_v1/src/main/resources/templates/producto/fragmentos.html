@@ -42,7 +42,7 @@
 
                                 <div class="mb-3">
                                     <label for="categoria">[[#{producto.categoria}]]</label>
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" aria-label="Default select example" name="categoria.idCategoria">
                                         <option th:each="c : ${categorias}"
                                                 th:value="${c.idCategoria}"
                                                 th:text="${c.descripcion}"></option>
@@ -54,8 +54,8 @@
                                     <input type="text" class="form-control" name="descripcion" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="descripcion">[[#{producto.detalle}]]</label>
-                                    <textarea class="form-control" name="detsllr" rows+"3"></textarea>
+                                    <label for="detalle">Detail</label>
+                                    <textarea class="form-control" name="detalle" rows+"3"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="categoria">[[#{producto.precio}]]</label>
@@ -147,15 +147,11 @@
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <form method="POST"
-                          th:action="@{/producto/guardar}" 
-                          th:object="${producto}"
-                          class="was-validated"                          
-                          enctype="multipart/form-data">
+                    <form method="POST" th:action="@{/producto/guardar}" th:object="${producto}" class="was-validated" enctype="multipart/form-data">
                         <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
                         <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
                         <section th:replace="~{producto/fragmentos :: botonesEditar}"/>
-                        <div id=details>
+                        <div id="details">
                             <div class="container">
                                 <div class="row">
                                     <div class="col">
@@ -180,7 +176,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="existencias">[[#{producto.existencias}]]</label>
-                                                    <input type="number" class="form-control" name="existencias" th:field="*{existencias}">
+                                                    <input type="number" class "form-control" name="existencias" th:field="*{existencias}">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="activo">[[#{producto.activo}]]</label>
@@ -201,10 +197,12 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </section>
+
 
         <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
         <section th:fragment="botonesEditar">
@@ -223,7 +221,7 @@
                     </div>
                     <div class="col-md-4 d-grid">
                         <button type="submit" class="btn btn-success">
-                            <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                            <i class="fas fa-check"></i> [[#{accion.actualizar}]]
                         </button>
                     </div>
                 </div>
