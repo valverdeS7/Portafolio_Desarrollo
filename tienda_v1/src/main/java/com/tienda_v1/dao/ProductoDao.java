@@ -8,7 +8,7 @@ public interface ProductoDao
         extends JpaRepository<Producto, Long> {
 
     // lista de productos utilizando un metodo Query
-    public List<Producto> findByPrecioBtweenOrderByDescripcion(double precioInf,
+    public List<Producto> findByPrecioBetweenOrderByDescripcion(double precioInf,
             double precioSup);
 
 }
